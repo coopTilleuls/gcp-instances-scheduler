@@ -20,7 +20,7 @@
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The project where resources will be created. | `string` | n/a | yes |
 | <a name="input_pubsub_filter"></a> [pubsub\_filter](#input\_pubsub\_filter) | PubSub subscription message filter. | <pre>object({<br>    attribute = string<br>    value     = string<br>  })</pre> | n/a | yes |
 | <a name="input_pubsub_topic"></a> [pubsub\_topic](#input\_pubsub\_topic) | The name of a Pub/Sub topic. | `string` | n/a | yes |
-| <a name="input_runtime"></a> [runtime](#input\_runtime) | The runtime in which the function will be executed. | `string` | `"nodejs18"` | no |
+| <a name="input_runtime"></a> [runtime](#input\_runtime) | The runtime in which the function will be executed. | `string` | `"nodejs22"` | no |
 | <a name="input_service_account_email"></a> [service\_account\_email](#input\_service\_account\_email) | The existing service account to run cloud function. | `string` | `""` | no |
 | <a name="input_source_dir"></a> [source\_dir](#input\_source\_dir) | The pathname of the directory which contains the function source code. | `string` | n/a | yes |
 | <a name="input_timeout"></a> [timeout](#input\_timeout) | The function execution timeout. | `number` | `540` | no |
