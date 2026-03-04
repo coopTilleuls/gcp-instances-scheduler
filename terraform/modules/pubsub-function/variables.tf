@@ -31,7 +31,7 @@ variable "location" {
 
 variable "runtime" {
   type        = string
-  default     = "nodejs20"
+  default     = "nodejs24"
   description = "The runtime in which the function will be executed."
 }
 
