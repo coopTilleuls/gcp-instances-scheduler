@@ -1,3 +1,9 @@
+locals {
+  source_hash = md5(join("", [
+    for f in fileset(var.source_dir, "**") : filemd5("${var.source_dir}/${f}")
+  ]))
+}
+
 data "archive_file" "default" {
   type        = "zip"
   output_path = "/tmp/${var.name}/function-source.zip"
@@ -5,9 +11,17 @@ data "archive_file" "default" {
 }
 
 resource "google_storage_bucket_object" "default" {
-  name   = format("%s/%s-%s.zip", var.name, "function-source", data.archive_file.default.output_md5)
+  name   = format("%s/%s-%s.zip", var.name, "function-source", local.source_hash)
   bucket = var.bucket_name
   source = data.archive_file.default.output_path
+  source_md5hash = local.source_hash
+  lifecycle {
+    ignore_changes = [
+      generation,
+      crc32c,
+      md5hash
+    ]
+  }
 }
 
 resource "google_cloudfunctions2_function" "default" {
